@@ -42,6 +42,7 @@ model Intervention {
   description         String
   workflow            String
   createdAt           DateTime              @default(now())
+  createdBy           String?
   status              String?
   dischargeId         Int?
   outStore            Boolean               @default(false)
@@ -69,6 +70,7 @@ model Intervention_status {
   modele         String?
   newIMEI        String?
   pdflink        String?
+  ispdfClosed    Boolean @default(false)
   amount         String?
 
 
@@ -95,7 +97,7 @@ model Swap {
   model          String
   price          String
 
-  intervention Intervention  @relation(fields: [interventionId], references: [id])
+  intervention Intervention @relation(fields: [interventionId], references: [id])
 }
 
 model Swap_status {

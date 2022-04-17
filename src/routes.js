@@ -5,6 +5,7 @@ const interRouter = express.Router();
 const deviceRouter = express.Router();
 const dischRouter = express.Router();
 const clientRouter = express.Router();
+const notiftRouter = express.Router();
 
 // AUTH
 const AUTHCONTROLLER = require("./controllers/auth");
@@ -39,9 +40,13 @@ dischRouter.post("/swap", DISCHCONTROLLER.createSwapDischarge);
 
 // AVAILABLE CLIENT
 const CLIENTCONTROLLER = require("./controllers/client");
-const uploadFileMiddleware = require("./middleware/upload");
 clientRouter.post("/create", CLIENTCONTROLLER.createAvailableClient);
 clientRouter.get("/get", CLIENTCONTROLLER.getAvailableClient);
+
+const NOTIFICONTROLLER = require("./controllers/notification");
+notiftRouter.post("/waiting", NOTIFICONTROLLER.getWaitingInter);
+notiftRouter.post("/closePDF", NOTIFICONTROLLER.updatedPDFStatus, INTERCONTROLLER.etatIntervention);
+
 
 module.exports = {
   authRouter,
@@ -49,4 +54,5 @@ module.exports = {
   deviceRouter,
   dischRouter,
   clientRouter,
+  notiftRouter
 };

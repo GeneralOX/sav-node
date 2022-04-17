@@ -23,6 +23,7 @@ exports.createIntervention = async (req, res, next) => {
       description: req.body.description,
       workflow: req.body.workflow,
       status: "Ouverte",
+      createdBy: req.body.shop,
       device: { connect: { imei: req.body.imei } },
       client: {
         connectOrCreate: {
@@ -84,7 +85,7 @@ exports.returnIntervention = async (req, res, next) => {
 exports.etatIntervention = async (req, res, next) => {
   let op = req.body.operation;
   var data = {
-    outStore: req.body.outStore ?? false,
+    outStore: req.body.outStore,
     intervention_status: {
       create: {
         obs: req.body.obs,
@@ -93,6 +94,7 @@ exports.etatIntervention = async (req, res, next) => {
         marque: op ? op.marque : null,
         modele: op ? op.modele : null,
         newIMEI: op ? op.newIMEI : null,
+        ispdfClosed: req.body.ispdfClosed,
       },
     },
   };
