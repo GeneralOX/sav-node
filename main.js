@@ -29,6 +29,7 @@ app.use('/api/intervention/', ROUTES.interRouter);
 app.use('/api/discharge/', ROUTES.dischRouter);
 app.use('/api/available_client/', ROUTES.clientRouter);
 app.use('/api/notification/', ROUTES.notiftRouter);
+app.use('/api/swap/', ROUTES.swapRouter);
 
 
 // Find 404 and hand over to error handler

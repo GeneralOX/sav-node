@@ -70,7 +70,7 @@ model Intervention_status {
   modele         String?
   newIMEI        String?
   pdflink        String?
-  ispdfClosed    Boolean @default(false)
+  ispdfClosed    Boolean  @default(false)
   amount         String?
 
 
@@ -92,6 +92,7 @@ model Available_client {
 model Swap {
   id             Int    @id @default(autoincrement())
   interventionId Int
+  status         String @default("pending")
   imei           String
   brand          String
   model          String

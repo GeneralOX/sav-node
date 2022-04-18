@@ -6,6 +6,7 @@ const deviceRouter = express.Router();
 const dischRouter = express.Router();
 const clientRouter = express.Router();
 const notiftRouter = express.Router();
+const swapRouter = express.Router();
 
 // AUTH
 const AUTHCONTROLLER = require("./controllers/auth");
@@ -45,8 +46,15 @@ clientRouter.get("/get", CLIENTCONTROLLER.getAvailableClient);
 
 const NOTIFICONTROLLER = require("./controllers/notification");
 notiftRouter.post("/waiting", NOTIFICONTROLLER.getWaitingInter);
-notiftRouter.post("/closePDF", NOTIFICONTROLLER.updatedPDFStatus, INTERCONTROLLER.etatIntervention);
+notiftRouter.post(
+  "/closePDF",
+  NOTIFICONTROLLER.updatedPDFStatus,
+  INTERCONTROLLER.etatIntervention
+);
 
+const SWAPCONTROLLER = require("./controllers/swap");
+swapRouter.get("/items", SWAPCONTROLLER.getItemList);
+swapRouter.post("/swaped", SWAPCONTROLLER.Swaped);
 
 module.exports = {
   authRouter,
@@ -54,5 +62,6 @@ module.exports = {
   deviceRouter,
   dischRouter,
   clientRouter,
-  notiftRouter
+  notiftRouter,
+  swapRouter
 };
